@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="wiki" >
+<head>
+  <title>Wikipedia Viewer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<div class="flex-container ">
+  <div class="       page-title  ">
+    <div id="head-title">Wikipedia Viewer</div>
+  </div>
+
+</div>
+
+
+<div ng-controller='wikiView'>
+  <div class='flex-container'>
+<input class= ' input
+'placeholder="type here to search for articles" ng-model="textInput" type="text">
+</div>
+
+<br>
+<br>
+<br>
+
+
+
+<br> <br> <br>
+<div class='container' >
+  <a ng-href=" {{ data.link }} " ng-repeat= "data in filterData">
+    <div class="dataBox">
+<div class="title">
+
+    {{   data.title  }}
+
+</div>
+<div class="desc">
+
+      {{   data.desc   }}
+
+</div>
+    </div>
+
+  </a>
+</div>
+</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src='app.js'></script>
+</body>
+</html>
