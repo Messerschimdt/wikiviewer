@@ -6,46 +6,20 @@ wiki.controller('wikiView', function($scope, $http) {
     fetch();
   })
   function fetch() {
-    $.ajax({
-      type: "GET",
-      url: 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + $scope.textInput + '&format=json',
-      dataType: "json",
-      headers: "ORIGN" success: function(response) {
-        $scope.wikidata = response.data;
 
-        $scope.filterData = [];
+    $http.get('https://en.wikipedia.org/w/api.php?action=opensearch&search=' + $scope.textInput + '&format=json&origin=*').then(function successCallback(response) {
+      $scope.wikidata = response.data;
 
-        for (var i = 0; i < $scope.wikidata[1].length; i++) {
-          $scope.filterData.push({title: $scope.wikidata[1][i], desc: $scope.wikidata[2][i], link: $scope.wikidata[3][i]
-          });
-        }
+      $scope.filterData = [];
+
+    if ($scope.textInput.length !==0){
+      for (var i = 0; i < $scope.wikidata[1].length; i++) {
+        $scope.filterData.push({title: $scope.wikidata[1][i], desc: $scope.wikidata[2][i], link: $scope.wikidata[3][i]
+        });
       }
 
-    })
-
-    //
-    // $http.get()
-    // .then(
-    //   function successCallback(response) {
-    //   $scope.wikidata = response.data;
-    //
-    //
-    //   $scope.filterData=[];
-    //
-    //
-    //   for (var i =0; i <$scope.wikidata[1].length ; i++){
-    //   $scope.filterData.push(
-    //     {
-    //     title :$scope.wikidata[1][i],
-    //      desc : $scope.wikidata[2][i],
-    //       link:$scope.wikidata[3][i]
-    //     }
-    //              );
-    //   }
-    //
-    //
-    //
-    // })//endofthen
+    }
+    }) //endofthen
   } //end of fetch
   $scope.clickSearch = fetch();
 })
